@@ -10,5 +10,5 @@ COPY helloworldCompositeApplication /usr/src/mymaven/helloworldCompositeApplicat
 RUN mvn -f /usr/src/mymaven/helloworld/pom.xml clean install -Dmaven.test.skip=true
 RUN mvn -f /usr/src/mymaven/helloworldCompositeApplication/pom.xml clean install -Dmaven.test.skip=true
 
-FROM gcr.io/research-n-development-209206/wso2mi:1.2.0
+FROM <BASE>
 COPY --from=builder /usr/src/mymaven/helloworldCompositeApplication/target/helloworldCompositeApplication_1.0.0.car ${WSO2_SERVER_HOME}/repository/deployment/server/carbonapps
