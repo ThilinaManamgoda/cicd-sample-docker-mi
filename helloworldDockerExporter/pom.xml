@@ -98,13 +98,14 @@
       <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
-        <version>1.4.3</version>
+        <version>1.4.13</version>
         <extensions>true</extensions>
         <executions>
           <execution>
+            <id>build</id>
+            <phase>install</phase>
             <goals>
               <goal>build</goal>
-              <goal>push</goal>
             </goals>
             <configuration>
               <repository>${repository}</repository>
@@ -114,8 +115,20 @@
               </buildArgs>
             </configuration>
           </execution>
+         <execution>
+         <id>push</id>
+         <phase>install</phase>
+            <goals>
+              <goal>push</goal>
+            </goals>
+            <configuration>
+              <repository>${repository}</repository>
+              <tag>${tag}</tag>
+              <username>${username}</username>
+              <password>${password}</password>
+            </configuration>
+         </execution>
         </executions>
-        <configuration/>
       </plugin>
     </plugins>
   </build>
